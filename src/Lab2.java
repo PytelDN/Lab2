@@ -24,7 +24,6 @@ public class Lab2 {
             e.printStackTrace();
         }
 
-        
     }
 
     public static double computeArea(Point3d[] point3ds){
@@ -35,8 +34,8 @@ public class Lab2 {
             double ab = Double.parseDouble(point3ds[0].distanceTo(point3ds[1]));
             double bc = Double.parseDouble(point3ds[1].distanceTo(point3ds[2]));
             double ca = Double.parseDouble(point3ds[2].distanceTo(point3ds[0]));
-            double p = ab+bc+ca;
-            return Math.sqrt(p/2*(p-ab)*(p-bc)*(p-ca));
+            double p = (ab+bc+ca)/2;
+            return Math.sqrt(p*(p-ab)*(p-bc)*(p-ca));
         }
 
     }
