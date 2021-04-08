@@ -18,8 +18,10 @@ public class Lab2 {
                 System.out.println("Введите координаты z");
                 point3ds[i].setZ(Double.parseDouble(reader.readLine()));
             }
-
-            System.out.println("Площадь треугольника = "+computeArea(point3ds));
+            double s = computeArea(point3ds);
+            if (s != 0){
+                System.out.println("Площадь треугольника = "+s);
+            }
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -27,13 +29,18 @@ public class Lab2 {
     }
 
     public static double computeArea(Point3d[] point3ds){
-        if (point3ds[0].equals(point3ds[1])||point3ds[0].equals(point3ds[2])||point3ds[1].equals(point3ds[2])){
+        if (point3ds[0].equals(point3ds[1])||point3ds[0].equals(point3ds[2])||point3ds[1].equals(point3ds[2])) {
             System.out.println("Невозможно создать треугольник, есть эквивалентные точки");
             return 0.0;
+
         } else {
             double ab = Double.parseDouble(point3ds[0].distanceTo(point3ds[1]));
             double bc = Double.parseDouble(point3ds[1].distanceTo(point3ds[2]));
             double ca = Double.parseDouble(point3ds[2].distanceTo(point3ds[0]));
+            if (ab+bc<ca || ab+ca<bc || bc+ca<ab){
+                System.out.println("Треугольник с такими сторонами существовать не может");
+                return 0;
+            }
             double p = (ab+bc+ca)/2;
             return Math.sqrt(p*(p-ab)*(p-bc)*(p-ca));
         }
